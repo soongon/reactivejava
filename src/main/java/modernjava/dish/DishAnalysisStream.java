@@ -7,7 +7,12 @@ import java.util.stream.Stream;
 
 public class DishAnalysisStream {
     public static void main(String[] args) {
-        Stream<String> stringStream = Dish.menu.stream()  // make stream Stream<Dish>
+
+        List<Dish> foodList = Dish.menu;
+
+        System.out.println(foodList);
+
+        Stream<String> stringStream = foodList.stream()  // make stream Stream<Dish>
                 .filter(dish -> dish.getCalories() <= 400)
                 .sorted(Comparator.comparingInt(Dish::getCalories))
                 .map(Dish::getName);
@@ -15,7 +20,6 @@ public class DishAnalysisStream {
         List<String> collect = stringStream.collect(Collectors.toList());
 
         System.out.println(collect);
-
     }
 }
 
